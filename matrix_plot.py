@@ -3,6 +3,8 @@ from matplotlib import pyplot as plt
 import string
 import numpy as np
 
+# to do: Terminal prompt
+
 def matrix_plot(img, figsize=(10, 10), charsize=15, sort=True,
                 brighten=1.0, fade=0.7):
     '''
@@ -10,38 +12,38 @@ def matrix_plot(img, figsize=(10, 10), charsize=15, sort=True,
 
     The iconic matrix background with the symbols is created
     and the image is used as a filter for this.
-    
+
     Parameters
     ----------
-    
+
     img : *.png
         Image that is to be shown; only brightness information
         is used, not colour channels.
-        
+
     figsize : tuple of 2 ints (default=(10, 10))
         Figure size of the image.
-        
+
     charsize : int (default=15)
         Size of the green characters, has to be adjusted to
         figure size.
-        
+
     sort : bool (default=True)
         Whether symbols should be sorted in order of
         descending brightness; looks better IMO but choice
         is up to user.
-        
+
     brighten : float (default=1.0)
         Parameter for brightening the image, higher means
         brighter.
-        
+
     fade : float (default=0.7)
         Parameter that controls how strongly the brightness
         fades when moving down the image; higher means
         stronger fading.
-        
+
     Result
     ------
-    
+
     The final image
 
     '''
@@ -78,3 +80,11 @@ def matrix_plot(img, figsize=(10, 10), charsize=15, sort=True,
     plt.xticks([])
     plt.yticks([])
     plt.show()
+
+if __name__ == '__main__':
+    from scipy.misc import imread
+    try:
+        img = imread('data/neo.png')
+    except IOError:
+        img = np.random.rand(40, 40) * 0.1
+    matrix_plot(img)
